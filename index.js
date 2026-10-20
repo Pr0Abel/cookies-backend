@@ -5,6 +5,20 @@ app.use(express.json());
 
 
 var cs = new Map()
+/* 
+GET /cookies
+ */
+app.get('/cookies', (req, res) => {
+    const cookies = []
+    cs.forEach((name, obj) => {
+        const { value, expires } = obj
+        cookies.push({ name, value, expires })
+    })
+
+    return res.status(200).json(cookies)
+})
+
+
 /**
 * POST /cookie
 */
